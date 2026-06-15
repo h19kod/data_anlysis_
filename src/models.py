@@ -98,7 +98,7 @@ class TrendModel:
         name = data["Indicator Name"].iloc[0]
         
         return TrendResult(
-            indicator_code=code,
+            indicator_code=indicator_code,
             indicator_name=name,
             n_observations=n,
             slope=slope,
