@@ -1,0 +1,27 @@
+# MANIFEST.in for Iraq WDI Analysis
+# Include additional files in package distribution
+
+# Include README and documentation
+include README.md
+include LICENSE
+include CONTRIBUTING.md
+include CHANGELOG.md
+include CODE_OF_CONDUCT.md
+
+# Include requirements
+include requirements.txt
+
+# Include documentation
+recursive-include docs *.md
+
+# Include examples
+recursive-include examples *.py
+
+# Include scripts
+recursive-include scripts *.py
+
+# Exclude test files and compiled Python
+exclude tests
+exclude __pycache__
+exclude *.pyc
+exclude *.pyo
