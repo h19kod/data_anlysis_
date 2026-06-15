@@ -1,0 +1,31 @@
+# Iraq WDI Analysis - Dependencies
+# تحليل مؤشرات التنمية للعراق - التبعيات
+
+# Core Data Analysis | التحليل الأساسي
+pandas>=1.3.0
+numpy>=1.21.0
+
+# Jupyter Environment | بيئة Jupyter
+jupyter>=1.0.0
+ipython>=7.0.0
+
+# Advanced Modeling | النمذجة المتقدمة (اختياري)
+scikit-learn>=1.0.0
+statsmodels>=0.13.0
+
+# Visualization | التصور (اختياري)
+matplotlib>=3.4.0
+seaborn>=0.11.0
+plotly>=5.0.0
+
+# Time Series | السلاسل الزمنية (اختياري)
+prophet>=1.1.0
+
+# Export & Reporting | التصدير والتقارير (اختياري)
+openpyxl>=3.0.0
+xlsxwriter>=3.0.0
+
+# Development | التطوير
+pytest>=6.0.0
+black>=22.0.0
+flake8>=4.0.0

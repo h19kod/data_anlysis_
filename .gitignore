@@ -1,0 +1,63 @@
+# Python | بايثون
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook | دفتر Jupyter
+.ipynb_checkpoints
+*.ipynb_checkpoints
+
+# Virtual Environments | البيئات الافتراضية
+venv/
+env/
+ENV/
+.venv/
+
+# IDE | بيئة التطوير
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS | نظام التشغيل
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Data Files | ملفات البيانات (كبيرة جداً)
+# Uncomment if data files are too large for GitHub
+# API_IRQ_DS2_en_csv_v2_16712/*.csv
+
+# Outputs | المخرجات
+outputs/
+*.png
+*.jpg
+*.pdf
+
+# Secrets | الأسرار
+.env
+.env.local
+*.key
+*.pem
+
+# Logs | السجلات
+*.log
+logs/

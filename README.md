@@ -147,21 +147,43 @@ GDP and trade show extreme volatility tied to oil prices and conflicts:
 ## 📁 Project Structure | هيكل المشروع
 
 ```
-data_anlysis/
+iraq-wdi-analysis/
 │
-├── 📓 data_analysis.ipynb              # Main analysis notebook | دفتر التحليل الرئيسي
-├── 📓 data_analysis_executed.ipynb     # Executed notebook with outputs | الدفتر المنفذ بالمخرجات
-├── 📄 README.md                        # This file | هذا الملف
+├── � src/                             # Source code modules | وحدات شيفرة المصدر
+│   ├── __init__.py                     # Package initialization
+│   ├── data_loader.py                  # Load and validate data | تحميل والتحقق من البيانات
+│   ├── data_cleaner.py                 # Clean and preprocess | التنظيف والمعالجة
+│   ├── feature_engineer.py             # Feature engineering | هندسة المتغيرات
+│   ├── models.py                       # Baseline models | النماذج الأساسية
+│   └── utils.py                        # Utility functions | الأدوات المساعدة
 │
-├── 📂 API_IRQ_DS2_en_csv_v2_16712/     # Raw data folder | مجلد البيانات الخام
+├── 📁 tests/                           # Unit tests | الاختبارات الوحدية
+│   ├── __init__.py
+│   ├── test_data_loader.py
+│   ├── test_data_cleaner.py
+│   └── test_feature_engineer.py
+│
+├── � docs/                            # Documentation | الوثائق
+│   └── PROJECT_OVERVIEW.md             # Detailed project docs | وثائق المشروع التفصيلية
+│
+├── 📁 scripts/                         # Automation scripts | سكريبتات التشغيل
+│   └── run_analysis.py                 # Main analysis script | سكريبت التحليل الرئيسي
+│
+├── � API_IRQ_DS2_en_csv_v2_16712/     # Raw data | البيانات الخام
 │   ├── API_IRQ_DS2_en_csv_v2_16712.csv
 │   ├── Metadata_Country_API_IRQ_DS2_en_csv_v2_16712.csv
 │   └── Metadata_Indicator_API_IRQ_DS2_en_csv_v2_16712.csv
 │
-└── 📂 outputs/                         # Generated outputs | المخرجات المولدة
-    ├── 📊 visualizations/              # Charts & plots | الرسوم البيانية
-    ├── 📈 reports/                     # Analysis reports | تقارير التحليل
-    └── 💾 processed_data/                # Cleaned datasets | مجموعات البيانات المنظفة
+├── � outputs/                         # Generated outputs | المخرجات المولدة
+│   ├── 📊 visualizations/                # Charts & plots
+│   ├── 📈 reports/                      # Analysis reports
+│   └── 💾 processed_data/               # Cleaned datasets
+│
+├── 📓 data_analysis.ipynb              # Main notebook (Jupyter) | الدفتر الرئيسي
+├── 📓 data_analysis_executed.ipynb     # Executed notebook | الدفتر المنفذ
+├── 📄 README.md                        # This file | هذا الملف
+├── 📄 requirements.txt                 # Python dependencies | التبعيات
+└── 📄 .gitignore                       # Git ignore rules | قواعد Git
 ```
 
 ---
@@ -186,16 +208,61 @@ pip install scikit-learn statsmodels matplotlib seaborn plotly
 
 ### Running the Analysis | تشغيل التحليل
 
+#### Option 1: Jupyter Notebook (Interactive) | الخيار 1: دفتر Jupyter (تفاعلي)
 ```bash
-# Clone the repository | استنساخ المستودع
-git clone https://github.com/h19kod/data_anlysis_.git
-cd data_anlysis_
-
 # Launch Jupyter Notebook | تشغيل Jupyter Notebook
 jupyter notebook data_analysis.ipynb
 
 # Or run all cells and save output | أو تشغيل جميع الخلايا وحفظ المخرجات
 jupyter nbconvert --to notebook --execute data_analysis.ipynb --output data_analysis_executed.ipynb
+```
+
+#### Option 2: Python Script (Command Line) | الخيار 2: سكريبت بايثون (سطر الأوامر)
+```bash
+# Run complete analysis pipeline | تشغيل خط أنابيب التحليل الكامل
+python scripts/run_analysis.py
+
+# With custom output directory | مع دليل إخراج مخصص
+python scripts/run_analysis.py --output-dir my_outputs
+
+# Save multiple formats | حفظ صيغ متعددة
+python scripts/run_analysis.py --save-formats csv excel
+```
+
+#### Option 3: Python Package (Programmatic) | الخيار 3: حزمة بايثون (برمجياً)
+```python
+from src.data_loader import DataLoader
+from src.data_cleaner import DataCleaner
+from src.feature_engineer import FeatureEngineer
+from src.models import TrendModel, EraClassifier
+
+# 1. Load data
+df, df_country, df_indicator = DataLoader().load_all()
+
+# 2. Clean data
+df_clean = DataCleaner(df).clean_all()
+
+# 3. Engineer features
+df_long = FeatureEngineer(df_clean).engineer_all()
+
+# 4. Run models
+trend_model = TrendModel()
+trend_model.fit(df_long, ["SP.POP.TOTL", "NY.GDP.MKTP.CD"])
+
+classifier = EraClassifier()
+classifier.fit(df_long)
+```
+
+### Running Tests | تشغيل الاختبارات
+```bash
+# Run all tests | تشغيل جميع الاختبارات
+python -m pytest tests/ -v
+
+# Run specific test | تشغيل اختبار محدد
+python -m pytest tests/test_data_cleaner.py -v
+
+# Run with coverage | التشغيل مع قياس التغطية
+python -m pytest tests/ --cov=src --cov-report=html
 ```
 
 ---
